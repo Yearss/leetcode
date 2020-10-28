@@ -4,6 +4,9 @@
         "algorithm": "cpp",
         "utility": "cpp",
         "unordered_map": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "iostream": "cpp",
+        "unordered_set": "cpp",
+        "queue": "cpp"
     }
 }
