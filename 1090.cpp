@@ -1,52 +1,32 @@
 
 #include <vector>
 #include <queue>
-#include <unordered_set>
+#include <unordered_map>
 
 using namespace std;
 
-
-
 class Solution {
 public:
-    priority_queue<int> pq[20001];
-    int ul[20001];
     int largestValsFromLabels(vector<int>& values, vector<int>& labels, int num_wanted, int use_limit) {
 
-        memset(ul, 0, sizeof(ul));
+        unordered_map<int, vector<int>> um;
+        for(int i = 0; i < values.size(); i++){
+            um[values[i]].push_back(labels[i]);
+        }
+
+        sort(values.begin(), values.end());
 
         int ret = 0;
-    
-        int N = values.size();
-        for(int i = 0; i < N; i++){
-            pq[labels[i]].push(values[i]);
-        }
+        unordered_map<int, int> label2cnt;
+        for(int i = 0; i < values.size(); i+=){
 
-        while(num_wanted > 0){
+            
+            if(label2cnt[labels[i]] > 0){
 
-            int mmaxIndex = -1;
-            int mmax = -1e9;
-            for(int i = 0; i < 20001; i++){
-                if(pq[i].empty() || ul[i] >= use_limit)
-                    continue;
-                
-                if(pq[i].top() > mmax){
-                    mmaxIndex = i;
-                    mmax = pq[i].top();
-                }
             }
-
-            if(mmaxIndex == -1)
-                break;
-
-            pq[mmaxIndex].pop();
-            ul[mmaxIndex]++;
-
-            ret += mmax;
-            num_wanted --;
         }
 
-        return ret;    
+        
 
     }
 };
